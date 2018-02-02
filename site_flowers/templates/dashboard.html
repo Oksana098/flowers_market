@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+{% block content %}
+    <ul style="list-style-type: none">
+        <li><a href="{% url 'distributor-list' %}">Distributor Prices</a></li>
+        <li><a href="{% url 'flowers-list' %}">Flowers</a></li>
+        <li><a href="{% url 'flowers-list-price' %}">Flowers prices</a></li>
+        <li><a href="{% url 'order-list' %}">Orders</a></li>
+    </ul>
+
+
+
+
+{% endblock %}
+href='/flowers/'{{ id }}

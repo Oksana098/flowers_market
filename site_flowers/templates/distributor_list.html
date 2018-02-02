@@ -1,0 +1,10 @@
+{% extends 'index.html' %}
+{% block content %}
+    <h1>Distributor Price</h1>
+    <ul style="list-style-type: none">
+    <a href="{% url 'dashboard'%}">go to the main page</a>
+    {% for val in object %}
+        <li><a href="{% url "distributor-price-details" val.id %}">{{ val.flowers_name }}</a></li>
+    {% endfor%}
+    </ul>
+{% endblock %}

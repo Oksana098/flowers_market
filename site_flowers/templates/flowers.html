@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+{% block content %}
+    <table border="2" cellpadding="10">
+    <caption>Flowers</caption>
+      <tr>
+          <th>Flowers name</th>
+          <th>Flowers color</th>
+          <th>Description</th>
+          <th>Date created</th>
+          <th>Code</th>
+          <th>Type Flowers</th>
+          <th>Discount</th>
+      </tr>
+          <td>{{ object.flowers_name }}</td>
+          <td>{{ object.color_flowers }}</td>
+          <th>{{ object.description}}</th>
+          <th>{{ object.date_created}}</th>
+          <th>{{ object.code}}</th>
+          <th>{{ object.type_flowers}}</th>
+          <th>{{ object.discount}}</th>
+
+    </table>
+{% endblock %}

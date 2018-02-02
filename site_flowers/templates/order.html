@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+{% block content %}
+    <table border="2" cellpadding="10">
+    <caption>Order</caption>
+      <tr>
+          <th>Date created</th>
+          <th>Count</th>
+          <th>Flowers</th>
+          <th>Delivery</th>
+          <th>street</th>
+
+      </tr>
+      <tr>
+          <td>{{ object.date_created}}</td>
+          <td>{{ object.count }}</td>
+          <th>{{ object.flowers}}</th>
+          <th>{{ object.delivery}}</th>
+          <th>{{ object.street}}</th>
+      </tr>
+
+    </table>
+{% endblock %}
