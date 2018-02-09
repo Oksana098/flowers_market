@@ -1,6 +1,10 @@
-from django.views.generic.detail import DetailView
-from site_flowers.models import Flowers, FlowersPrice, DistributorPrice, Order
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.views.generic.detail import DetailView
+from django.urls import reverse
+
+from site_flowers.forms.order import OrderForm
+from site_flowers.models import Flowers, FlowersPrice, DistributorPrice, Order
 
 
 class FlowersDetailsView(DetailView):
@@ -15,7 +19,7 @@ class FlowersPriceDetailsView(DetailView):
 
 class DistributorPriceDetailsView(DetailView):
     model = DistributorPrice
-    template_name = 'distributor_price.html',
+    template_name = 'distributor_price.html'
 
 
 class OrderDetailsView(DetailView):
@@ -24,34 +28,39 @@ class OrderDetailsView(DetailView):
 
 
 def dashboard(request):
-    object = Flowers.objects.all()
-    return render(request, 'dashboard.html', {'object': object})
+    dashboard_list = Flowers.objects.all()
+    return render(request, 'dashboard.html', {'dashboard_list': dashboard_list})
 
 
 def flowers_list(request):
-    # wtf with names of variables?
-    # why in all views you get from flowers model?
-
-    object = Flowers.objects.all()
-    return render(request, 'flowers_list.html', {'object': object})
+    flowers = Flowers.objects.all()
+    return render(request, 'flowers_list.html', {'flowers': flowers})
 
 
 def flowers_list_price(request):
-    # wtf
-    object = FlowersPrice.objects.all()
-    return render(request, 'flowers_list_price.html', {'object': object})
+    flowers_price = FlowersPrice.objects.all()
+    return render(request, 'flowers_list_price.html', {'flowers_price': flowers_price})
 
 
 def order_list(request):
-    # wtf
-    object = Order.objects.all()
-    return render(request, 'order_list.html', {'object': object})
+    order = Order.objects.all()
+    return render(request, 'order_list.html', {'order': order})
 
 
 def distributor_list(request):
-    # shit
-    object = Flowers.objects.all()
-    return render(request, 'distributor_list.html', {'object': object})
+    distributor_price = DistributorPrice.objects.all()
+    return render(request, 'distributor_list.html', {'distributor_price': distributor_price})
+
+
+def order_flowers(request):
+    if request.method == "POST":
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('order-details', kwargs={'pk': form.instance.pk}))
+    else:
+        form = OrderForm()
+    return render(request, 'order_flowers.html', {'form': form})
 
 
 

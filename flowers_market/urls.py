@@ -16,7 +16,11 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from site_flowers.views import dashboard
+
+
 urlpatterns = [
+    url(r'^$', dashboard),
     url(r'^admin/', admin.site.urls),
     url(r'^flowers/', include('site_flowers.urls'))
 ]

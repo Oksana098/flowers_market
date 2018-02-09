@@ -3,7 +3,7 @@
     <h1>Flowers Price</h1>
     <ul style="list-style-type: none">
     <a href="{% url 'dashboard'%}">go to the main page</a>
-    {% for val in object %}
+    {% for val in flowers_price %}
         <li><a href="{% url "flowers-price-details" val.id %}">{{ val.flowers.flowers_name }}</a></li>
     {% endfor%}
     </ul>

@@ -1,15 +1,16 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.utils import timezone
 
 CHOICES = (
-    ('1', 'Roze'),
-    ('2', 'Tulip')
+    ('0', 'Roze'),
+    ('1', 'Tulip')
 )
 
 CHOICES_LOGIC = (
-    ('1', 'Yes'),
-    ('2', 'No')
+    ('0', 'Yes'),
+    ('1', 'No')
 )
 
 
@@ -52,11 +53,19 @@ class DistributorPrice(models.Model):
 
 
 class Order(models.Model):
-    date_created = models.DateField()
-    count = models.IntegerField()
+    # TODO default to date_created
+    date_created = models.DateField(null=True, blank=True, default=timezone.now)
+    date_order = models.DateField('Time Delivery')
+    name = models.CharField('Name', max_length=20)
+    phone = models.CharField('Phone', max_length=15)
+    email = models.EmailField('Email', max_length=40)
+    count = models.PositiveIntegerField('Count Flowers')
+    delivery = models.CharField(max_length=3, choices=CHOICES_LOGIC)
+    delivery_address = models.CharField(max_length=100)
     flowers = models.ForeignKey(Flowers, related_name='order')
-    delivery = models.CharField(max_length=3, choices=(('1', 'Yes'), ('2', 'No')))
-    street = models.CharField(max_length=255)
+
+    def __unicode__(self):
+        return '{}'.format(self.name)
 
     @property
     def discount(self):
