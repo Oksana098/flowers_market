@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+{% block content %}
+    <h1>Order</h1>
+
+    <ul style="list-style-type: none">
+     <a href="{% url 'dashboard'%}">go to the main page</a>
+    {% for val in order %}
+       <li><a href="{% url "order-details" val.id %}">{{ val.flowers.flowers_name }}</a></li>
+
+    {% endfor%}
+    </ul>
+{% endblock %}

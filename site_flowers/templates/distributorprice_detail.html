@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+{% block content %}
+     <table border="2" cellpadding="10">
+    <caption>Distributor price</caption>
+      <tr>
+        <th>Flowers name</th>
+        <th>Flowers price</th>
+      </tr>
+    <tr>
+        <td>{{ object.flowers.flowers_name }}</td>
+        <td>{{ object.price }}</td>
+
+    </tr>
+    </table>
+{% endblock %}

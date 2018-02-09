@@ -1,0 +1,10 @@
+{% extends 'index.html' %}
+{% block content %}
+    <h1>Flowers</h1>
+    <ul style="list-style-type: none">
+    <a href="{% url 'dashboard'%}">go to the main page</a>
+    {% for val in flowers %}
+        <li><a href="{% url "flower-details" val.id %}">{{ val.flowers_name}}</a></li>
+    {% endfor%}
+    </ul>
+{% endblock %}
